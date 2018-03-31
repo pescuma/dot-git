@@ -1,0 +1,39 @@
+[user]
+    name = Ricardo Pescuma Domenecci
+    email = ricardo@pescuma.org
+[core]
+    autocrlf = false
+    safecrlf = false
+[alias]
+    co = checkout
+    st = status -s
+    glog = log --graph --decorate --date=short --pretty=format:'%C(yellow)%h %Cred%ad %C(yellow)%an%Cgreen%d%Creset %s'
+    dlog = log --graph --decorate --oneline --date=short
+    sm = merge --squash
+    sc = !git add -A && git commit -m "-"
+    cm = !git add -A && git commit -m
+[push]
+    default = upstream
+
+
+[merge]
+    tool = diffmerge
+[mergetool "kdiff3"]
+    path = c:/Program Files (x86)/KDiff3/kdiff3.exe
+[mergetool "winmerge"]
+    cmd = \"c:/Program Files (x86)/winmerge/winmergeu.exe\" \"$MERGED\"
+    path = c:/Program Files (x86)/winmerge/winmergeu.exe
+[mergetool "diffmerge"]
+    cmd = \"C:\\program files\\sourcegear\\common\\diffmerge\\sgdm.exe\" --merge --result=\"$MERGED\"  \"$LOCAL\" \"$BASE\" \"$REMOTE\" --title1=Mine --title2=Base --title3=Theirs
+    trustexitcode = false
+[diff]
+    guitool = diffmerge
+    tool = diffmerge
+[difftool "kdiff3"]
+    path = c:/Program Files (x86)/KDiff3/kdiff3.exe
+[difftool "winmerge"]
+    cmd = \"c:/Program Files (x86)/winmerge/winmergeu.exe\" -e -ub -dl \"Base\" -dr \"Mine\" \"$LOCAL\" \"$REMOTE\"
+[difftool "diffmerge"]
+    cmd = \"C:\\program files\\sourcegear\\common\\diffmerge\\sgdm.exe\" \"$LOCAL\" \"$REMOTE\" --title1=Old --title2=New
+[credential]
+	helper = wincred
