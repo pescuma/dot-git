@@ -1,39 +1,32 @@
-[user]
-    name = Ricardo Pescuma Domenecci
-    email = ricardo@pescuma.org
 [core]
-    autocrlf = false
-    safecrlf = false
+	autocrlf = false
+[user]
+	name = Ricardo Pescuma Domenecci
+	email = ricardo@pescuma.org
 [alias]
-    co = checkout
-    st = status -s
-    glog = log --graph --decorate --date=short --pretty=format:'%C(yellow)%h %Cred%ad %C(yellow)%an%Cgreen%d%Creset %s'
-    dlog = log --graph --decorate --oneline --date=short
-    sm = merge --squash
-    sc = !git add -A && git commit -m "-"
-    cm = !git add -A && git commit -m
-[push]
-    default = upstream
+	co = checkout
+	st = status -s
+	glog = log --graph --decorate --date=short --pretty=format:'%C(yellow)%h %Cred%ad %C(yellow)%an%Cgreen%d%Creset %s'
+	gslog = log --stat=200 --graph --decorate --date=short --pretty=format:'%C(yellow)%h %Cred%ad %C(yellow)%an%Cgreen%d%Creset %s'
+	cm = !git add -A && git commit -m
+	sc = !git add -A && git commit -m '-'
+	ba = branch -a
+	pullall = !git pull --rebase && git submodule update --init --recursive
 
-
-[merge]
-    tool = diffmerge
-[mergetool "kdiff3"]
-    path = c:/Program Files (x86)/KDiff3/kdiff3.exe
-[mergetool "winmerge"]
-    cmd = \"c:/Program Files (x86)/winmerge/winmergeu.exe\" \"$MERGED\"
-    path = c:/Program Files (x86)/winmerge/winmergeu.exe
-[mergetool "diffmerge"]
-    cmd = \"C:\\program files\\sourcegear\\common\\diffmerge\\sgdm.exe\" --merge --result=\"$MERGED\"  \"$LOCAL\" \"$BASE\" \"$REMOTE\" --title1=Mine --title2=Base --title3=Theirs
-    trustexitcode = false
 [diff]
-    guitool = diffmerge
-    tool = diffmerge
-[difftool "kdiff3"]
-    path = c:/Program Files (x86)/KDiff3/kdiff3.exe
+	tool = winmerge
+[difftool "DiffMerge"]
+	cmd = 'C:/Program Files/SourceGear/Common/DiffMerge/sgdm.exe' -t2=Mine -t1=Original "$LOCAL" "$REMOTE"
 [difftool "winmerge"]
-    cmd = \"c:/Program Files (x86)/winmerge/winmergeu.exe\" -e -ub -dl \"Base\" -dr \"Mine\" \"$LOCAL\" \"$REMOTE\"
-[difftool "diffmerge"]
-    cmd = \"C:\\program files\\sourcegear\\common\\diffmerge\\sgdm.exe\" \"$LOCAL\" \"$REMOTE\" --title1=Old --title2=New
-[credential]
-	helper = wincred
+        cmd = \"c:/Program Files (x86)/winmerge/winmergeu.exe\" -e -ub -dl \"Base\" -dr \"Mine\" \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool = DiffMerge
+[mergetool "DiffMerge"]
+	trustExitCode = true
+	cmd = 'C:/Program Files/SourceGear/Common/DiffMerge/sgdm.exe' -merge -result="$PWD/$MERGED" -t1=Theirs -t2=Base -t3=Mine "$PWD/$LOCAL" "$PWD/$BASE" "$PWD/$REMOTE"
+[mergetool]
+    keepBackup = false
+[push]
+	default = simple
+[credential "http://satdevops"]
+	provider = generic
