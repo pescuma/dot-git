@@ -18,7 +18,7 @@
 [difftool "DiffMerge"]
 	cmd = 'C:/Program Files/SourceGear/Common/DiffMerge/sgdm.exe' -t2=Mine -t1=Original "$LOCAL" "$REMOTE"
 [difftool "winmerge"]
-        cmd = \"c:/Program Files (x86)/winmerge/winmergeu.exe\" -e -ub -dl \"Base\" -dr \"Mine\" \"$LOCAL\" \"$REMOTE\"
+	cmd = \"c:/Program Files (x86)/winmerge/winmergeu.exe\" -e -ub -dl \"Base\" -dr \"Mine\" \"$LOCAL\" \"$REMOTE\"
 [merge]
 	tool = DiffMerge
 [mergetool "DiffMerge"]
@@ -28,5 +28,7 @@
     keepBackup = false
 [push]
 	default = simple
-[credential "http://satdevops"]
-	provider = generic
+[init]
+	defaultBranch = main
+[credential]
+	helper = manager
